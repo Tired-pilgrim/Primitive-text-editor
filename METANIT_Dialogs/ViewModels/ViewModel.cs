@@ -1,4 +1,5 @@
 ﻿using METANIT_Dialogs.Commands;
+using METANIT_Dialogs.Models;
 using METANIT_Dialogs.Services;
 using System;
 using System.Diagnostics;
@@ -13,20 +14,18 @@ namespace METANIT_Dialogs.ViewModels
             if (PropertyName == nameof(Text) )
             {
                 Debug.WriteLine(Text);
+                //_model.MText = Text;
             }
         }
-        /// <summary>Интерфейс файлового сервиса</summary>
-        IFileService fileService;
-        /// <summary>Интерфейс сервиса диалогов</summary>
-        IDialogService dialogService;
+        Model _model;
+        
         public RelayCommand OpenTextCommand { get; }
         public RelayCommand SaveTextCommand { get; }
-        public ViewModel(IDialogService dialogService, IFileService fileService)
+        public ViewModel(Model model )
         {
-            this.fileService = fileService;
-            this.dialogService = dialogService;
-            SaveTextCommand = new RelayCommand(SaveText);
-            OpenTextCommand = new RelayCommand(OpenText);
+            model.LoadTextEvent += (s, e) => Text = e;
+            SaveTextCommand = new RelayCommand(() =>model.SaveText(Text));
+            OpenTextCommand = new RelayCommand(() =>model.LoadText());
         }
         private string _text;
         public string Text
@@ -34,36 +33,5 @@ namespace METANIT_Dialogs.ViewModels
             get => _text;
             set => Set(ref _text, ref value);
         }
-        private void SaveText() 
-        {
-            Debug.WriteLine("Сохранить");
-            try
-            {
-                if (dialogService.SaveFileDialog())
-                    fileService.Save(dialogService.FilePath, Text);
-                else dialogService.ShowMessage("Документ не сохранён");
-            }
-            catch (Exception ex)
-            {
-                dialogService.ShowMessage(ex.Message);
-            }
-        }
-
-        private void OpenText() 
-        {
-            Debug.WriteLine("Открыть");
-            try
-            {
-                if (dialogService.OpenFileDialog())
-                {
-                    Text = fileService.Open(dialogService.FilePath);                    
-                }
-            }
-            catch (Exception ex)
-            {
-                dialogService.ShowMessage(ex.Message);
-            }
-        }
-
     }
 }
