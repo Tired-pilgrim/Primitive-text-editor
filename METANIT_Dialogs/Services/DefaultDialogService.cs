@@ -13,7 +13,7 @@ namespace METANIT_Dialogs.Services
     {
         private OpenFileDialog _openFileDialog;
         private SaveFileDialog _saveFileDialog;
-        public string FilePath { get; set; }
+        public string FilePath { get; set; } = string.Empty;
         private readonly string TextFolder = Environment.CurrentDirectory + @"\Документы\";
         public DefaultDialogService() 
         {
