@@ -1,0 +1,24 @@
+﻿ <!--По мотивам урока Работа с диалоговыми окнами https://metanit.com/sharp/wpf/22.6.php-->
+    <Window x:Class="METANIT_Dialogs.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:METANIT_Dialogs"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Button Width="120" Content="Открыть" FontSize="16" Margin="10,0"
+                    Command="{Binding OpenTextCommand}"/>
+            <Button Width="120" Content="Сохранить" FontSize="16" Margin="10,0"
+                    Command="{Binding SaveTextCommand}"/>
+        </StackPanel>
+        <TextBox  Grid.Row="1"  FontSize="20"
+                  AcceptsReturn = "True" TextWrapping = "Wrap" Text="{Binding Text}"/>
+    </Grid>
+</Window>
