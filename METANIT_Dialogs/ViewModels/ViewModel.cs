@@ -15,9 +15,9 @@ namespace METANIT_Dialogs.ViewModels
                 Debug.WriteLine(Text);
             }
         }
-        /// <summary>Интерфейс сервиса</summary>
+        /// <summary>Интерфейс файлового сервиса</summary>
         IFileService fileService;
-        /// <summary>Интерфейс сервиса</summary>
+        /// <summary>Интерфейс сервиса диалогов</summary>
         IDialogService dialogService;
         public RelayCommand OpenTextCommand { get; }
         public RelayCommand SaveTextCommand { get; }
