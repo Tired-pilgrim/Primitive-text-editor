@@ -34,13 +34,11 @@ namespace METANIT_Dialogs.Models
         public void LoadText()
         {
             Debug.WriteLine("Открыть");
-            string InText = string.Empty;
             try
             {
                 if (_dialogService.OpenFileDialog())
                 {
-                    InText = _fileService.Open(_dialogService.FilePath);
-                    LoadTextEvent?.Invoke(this, InText);
+                    LoadTextEvent?.Invoke(this, _fileService.Open(_dialogService.FilePath));
                 }
             }
             catch (Exception ex)
