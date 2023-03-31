@@ -10,7 +10,6 @@ namespace METANIT_Dialogs.Models
         IDialogService _dialogService;
         /// <summary>Интерфейс файлового сервиса</summary>
         IFileService _fileService;
-        //public string RText { get; set; }
         public Repository(IDialogService dialogService, IFileService fileService)
         {
             _dialogService = dialogService;

@@ -1,8 +1,5 @@
 ﻿using METANIT_Dialogs.Commands;
 using METANIT_Dialogs.Models;
-using METANIT_Dialogs.Services;
-using System;
-using System.Diagnostics;
 
 namespace METANIT_Dialogs.ViewModels
 {

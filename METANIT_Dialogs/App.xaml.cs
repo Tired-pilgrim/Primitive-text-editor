@@ -1,12 +1,6 @@
 ﻿using METANIT_Dialogs.Models;
 using METANIT_Dialogs.Services;
 using METANIT_Dialogs.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace METANIT_Dialogs
@@ -18,7 +12,6 @@ namespace METANIT_Dialogs
     {
         public App() 
         {
-            //Model _model = new();
             Repository repository = new(new DefaultDialogService(), new FileService());
             ViewModel viewModel = new(new  Model(repository));
             MainWindow _mainWindow = new() { DataContext = viewModel };

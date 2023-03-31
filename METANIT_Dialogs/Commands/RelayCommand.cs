@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
@@ -30,7 +26,7 @@ namespace METANIT_Dialogs.Commands
         /// <summary>Конструктор команды.</summary>
         /// <param name="execute">Выполняемый метод команды.</param>
         /// <param name="canExecute">Метод, возвращающий состояние команды.</param>
-        public RelayCommand(ExecuteHandler execute, CanExecuteHandler canExecute = null)
+        public RelayCommand(ExecuteHandler execute, CanExecuteHandler canExecute )
             : this()
         {
             this.execute = execute ?? throw new ArgumentNullException(nameof(execute));
