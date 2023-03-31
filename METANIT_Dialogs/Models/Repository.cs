@@ -6,6 +6,7 @@ namespace METANIT_Dialogs.Models
 {
     internal class Repository
     {
+        //Перенос кода
         /// <summary>Интерфейс сервиса диалогов</summary>
         IDialogService _dialogService;
         /// <summary>Интерфейс файлового сервиса</summary>
