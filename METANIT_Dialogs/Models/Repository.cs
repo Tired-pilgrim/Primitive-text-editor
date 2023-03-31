@@ -16,7 +16,7 @@ namespace METANIT_Dialogs.Models
             _dialogService = dialogService;
             _fileService = fileService;
         }
-        /// <summary>Есть ли путь для сохранегия в файл</summary>
+        /// <summary>Есть ли путь для сохранения в файл</summary>
         public bool ExistsPath { get; private set; } = false;
         private string OldFilePath = string.Empty;
         public void SaveAsText(string text)
