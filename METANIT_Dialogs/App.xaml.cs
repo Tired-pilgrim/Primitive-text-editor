@@ -12,8 +12,9 @@ namespace METANIT_Dialogs
     {
         public App() 
         {
-            Repository repository = new(new DefaultDialogService(), new FileService());
-            ViewModel viewModel = new(new  Model(repository));
+            //Repository repository = new(new DefaultDialogService(), new FileService());
+            DefaultDialogService dialogService = new();
+            ViewModel viewModel = new(new  Model(dialogService));
             MainWindow _mainWindow = new() { DataContext = viewModel };
             _mainWindow.Show();
         }

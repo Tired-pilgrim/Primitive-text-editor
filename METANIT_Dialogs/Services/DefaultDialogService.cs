@@ -1,12 +1,8 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace METANIT_Dialogs.Services
 {
@@ -35,23 +31,32 @@ namespace METANIT_Dialogs.Services
             };
 
         }
-        public string OpenFileDialog()
+        /// <summary>Есть ли путь для сохранения в файл</summary>
+        public bool ExistsPath { get;  set; } = false;
+        private string _currebtPath = string.Empty;
+        public event EventHandler<string>? LoadTextEvent;
+        public bool LoadText()
         {
             if (_openFileDialog.ShowDialog() == true)
             {
-                return  File.ReadAllText(_openFileDialog.FileName, Encoding.UTF8); 
+                ExistsPath = true;
+                _currebtPath = _openFileDialog.FileName;
+                LoadTextEvent?.Invoke(this, File.ReadAllText(_openFileDialog.FileName, Encoding.UTF8));
+                return true; 
             }
             else
             {
                 MessageBox.Show("Документ не загружен");
-                return string.Empty;
+                return false;
             }            
         }
 
-        public bool SaveFileDialog(string str)
+        public bool SaveAsText(string str)
         {
             if (_saveFileDialog.ShowDialog() == true)
             {
+                ExistsPath = true;
+                _currebtPath = _saveFileDialog.FileName;
                 FilePath = _saveFileDialog.FileName;
                 File.WriteAllText(_saveFileDialog.FileName, str, Encoding.UTF8);
                 return true;
@@ -62,6 +67,22 @@ namespace METANIT_Dialogs.Services
                 return false;
             }
         }
+        public bool SaveText(string str)
+        {
+            if (_currebtPath != string.Empty)
+            {
+                FilePath = _saveFileDialog.FileName;
+                File.WriteAllText(_currebtPath, str, Encoding.UTF8);
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Документ не сохранён");
+                return false;
+            }
+        }
+       
+
         public void ShowMessage(string message)
         {
             MessageBox.Show(message);

@@ -1,10 +1,15 @@
-﻿namespace METANIT_Dialogs.Services
+﻿using System;
+
+namespace METANIT_Dialogs.Services
 {
     internal interface IDialogService
     {
         void ShowMessage(string message);   // показ сообщения
         string FilePath { get; set; }   // путь к выбранному файлу
-        string OpenFileDialog();  // открытие файла
-        bool SaveFileDialog(string str);  // сохранение файла
+        bool LoadText();  // открытие файла
+        bool SaveAsText(string str);  // сохранение файла
+        bool SaveText(string str);  // сохранение файла
+        bool ExistsPath { get;  set; }
+        public event EventHandler<string>? LoadTextEvent;
     }
 }

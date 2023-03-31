@@ -1,20 +1,20 @@
-﻿using System;
+﻿using METANIT_Dialogs.Services;
+using System;
 
 namespace METANIT_Dialogs.Models
 {
     public class Model
     {
-        
-        Repository _repository;
-        internal Model(Repository repository)
+        IDialogService _dialogService;
+        internal Model(IDialogService dialogService)
         {
-            _repository = repository;
-            repository.LoadTextEvent += (s,e) => LoadTextEvent?.Invoke(this, e); 
+            _dialogService = dialogService;
+            dialogService.LoadTextEvent += (s,e) => LoadTextEvent?.Invoke(this, e); 
         }
         public event EventHandler<string>? LoadTextEvent;
-        public bool ExistsPath => _repository.ExistsPath;
-        public void LoadText() => _repository.LoadText();
-        public void SaveText(string text) => _repository.SaveText(text);
-        public void SaveAsText(string text) => _repository.SaveAsText(text);
+        public bool ExistsPath => _dialogService.ExistsPath;
+        public void LoadText() => _dialogService.LoadText();
+        public void SaveText(string text) => _dialogService.SaveText(text);
+        public void SaveAsText(string text) => _dialogService.SaveAsText(text);
     }
 }
