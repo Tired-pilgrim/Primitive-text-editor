@@ -16,7 +16,7 @@ namespace METANIT_Dialogs.Services
 
         public void Save(string filename, string Text)
         {
-           File.WriteAllText(filename, Text, Encoding.UTF8);    
+           File.WriteAllText(filename, Text, Encoding.UTF8);
         }
     }
 }

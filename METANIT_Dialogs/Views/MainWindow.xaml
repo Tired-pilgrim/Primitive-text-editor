@@ -4,7 +4,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:METANIT_Dialogs"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -17,8 +16,13 @@
                     Command="{Binding OpenTextCommand}"/>
             <Button Width="120" Content="Сохранить" FontSize="16" Margin="10,0"
                     Command="{Binding SaveTextCommand}"/>
+            <Button Width="130" Content="Сохранить как..." FontSize="16" Margin="10,0"
+                    Command="{Binding SaveAsTextCommand}"/>
+            <Button Width="120" Content="Очистить" FontSize="16" Margin="10,0"
+                    Command="{Binding ClearTextCommand}"/>
         </StackPanel>
         <TextBox  Grid.Row="1"  FontSize="20"
-                  AcceptsReturn = "True" TextWrapping = "Wrap" Text="{Binding Text}"/>
+                  AcceptsReturn = "True" TextWrapping = "Wrap" 
+                  Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </Window>

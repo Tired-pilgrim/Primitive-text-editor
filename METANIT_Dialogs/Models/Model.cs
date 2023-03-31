@@ -12,8 +12,9 @@ namespace METANIT_Dialogs.Models
             repository.LoadTextEvent += (s,e) => LoadTextEvent?.Invoke(this, e); 
         }
         public event EventHandler<string>? LoadTextEvent;
-       
+        public bool ExistsPath => _repository.ExistsPath;
         public void LoadText() => _repository.LoadText();
         public void SaveText(string text) => _repository.SaveText(text);
+        public void SaveAsText(string text) => _repository.SaveAsText(text);
     }
 }
