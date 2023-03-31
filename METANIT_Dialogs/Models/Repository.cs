@@ -20,7 +20,6 @@ namespace METANIT_Dialogs.Models
         private string OldFilePath = string.Empty;
         public void SaveAsText(string text)
         {
-            Debug.WriteLine("Сохранить");
             try
             {
                 if (_dialogService.SaveFileDialog())
@@ -38,7 +37,6 @@ namespace METANIT_Dialogs.Models
         }
         public void SaveText(string text)
         {
-            Debug.WriteLine("Сохранить");
             try
             {
                 if (!string.IsNullOrEmpty(OldFilePath))
@@ -54,7 +52,6 @@ namespace METANIT_Dialogs.Models
         public event EventHandler<string>? LoadTextEvent;
         public void LoadText()
         {
-            Debug.WriteLine("Открыть");
             try
             {
                 if (_dialogService.OpenFileDialog())
@@ -67,9 +64,7 @@ namespace METANIT_Dialogs.Models
             catch (Exception ex)
             {
                 _dialogService.ShowMessage(ex.Message);
-                //ret = string.Empty;
             }
-            //return ret;
         }
     }
 }
