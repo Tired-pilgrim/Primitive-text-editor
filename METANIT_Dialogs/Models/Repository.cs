@@ -60,6 +60,8 @@ namespace METANIT_Dialogs.Models
                     OldFilePath = _dialogService.FilePath;
                     LoadTextEvent?.Invoke(this, _fileService.Open(_dialogService.FilePath));
                 }
+                else
+                    _dialogService.ShowMessage("Документ не загружен");
             }
             catch (Exception ex)
             {
