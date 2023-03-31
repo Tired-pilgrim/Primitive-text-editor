@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace METANIT_Dialogs.Services
 {
@@ -34,24 +35,32 @@ namespace METANIT_Dialogs.Services
             };
 
         }
-        public bool OpenFileDialog()
+        public string OpenFileDialog()
         {
             if (_openFileDialog.ShowDialog() == true)
             {
-                FilePath = _openFileDialog.FileName;
-                return true;
+                return  File.ReadAllText(_openFileDialog.FileName, Encoding.UTF8); 
             }
-            return false;
+            else
+            {
+                MessageBox.Show("Документ не загружен");
+                return string.Empty;
+            }            
         }
 
-        public bool SaveFileDialog()
+        public bool SaveFileDialog(string str)
         {
             if (_saveFileDialog.ShowDialog() == true)
             {
                 FilePath = _saveFileDialog.FileName;
+                File.WriteAllText(_saveFileDialog.FileName, str, Encoding.UTF8);
                 return true;
             }
-            return false;
+            else
+            {
+                MessageBox.Show("Документ не сохранён");
+                return false;
+            }
         }
         public void ShowMessage(string message)
         {
